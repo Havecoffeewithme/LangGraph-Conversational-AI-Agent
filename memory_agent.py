@@ -9,15 +9,21 @@ import os
 
 load_dotenv()
 
+api_key = os.getenv("OPENAI_API_KEY")
+
+if not api_key:
+    raise ValueError("OPENAI_API_KEY : Not found !")
+print("OPENAI_API_KEY : Successfully loaded ")
+
 
 class AgentState(TypedDict):
     messages: List[Union[HumanMessage, AIMessage]]
 
 
 model = init_chat_model(
-    "gpt-4o-min",
+    "gpt-4o-mini",
     model_provider="openai",
-    temperture=0
+    temperature=0
 )
 
 
